@@ -118,7 +118,7 @@ function App() {
     api
       .submitCard({ title, link })
       .then((newCard) => {
-        setCards([newCard.data, ...cards]);
+        setCards([ ...cards, newCard.data ]);
         closeAllPopups();
       })
       .catch((err) => console.log(err))
@@ -158,7 +158,6 @@ function App() {
     auth
       .authorize({ email, password })
       .then((user) => {
-        // localStorage.setItem("token", data.token);
         setLoggedIn(true);
         setUserEmail(user.data.email);
         history.push("/");
@@ -173,24 +172,24 @@ function App() {
   }
 
   function handleLogout() {
-    localStorage.removeItem("token");
+    setLoggedIn(false)
     history.push("/sign-in");
   }
 
-  const checkToken = useCallback(() => {
-    api
-      .getUserInfo()
-      .then((res) => {
-        setLoggedIn(true);
-        setUserEmail(res.data.email);
-        history.push("/");
-      })
-      .catch((err) => console.log(err));
-  }, [history]);
+  // const checkToken = useCallback(() => {
+  //   api
+  //     .getUserInfo()
+  //     .then((res) => {
+  //       setLoggedIn(true);
+  //       setUserEmail(res.data.email);
+  //       history.push("/");
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [history]);
 
-  useEffect(() => {
-    checkToken()
-  }, [checkToken]);
+  // useEffect(() => {
+  //   checkToken()
+  // }, [checkToken]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

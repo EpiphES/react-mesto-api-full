@@ -56,7 +56,7 @@ function Main({
         />
       </section>
 
-      <ul className="elements">{cardsElements}</ul>
+      <ul className="elements">{cardsElements.reverse()}</ul>
     </main>
   );
 }
