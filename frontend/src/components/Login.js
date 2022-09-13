@@ -48,6 +48,7 @@ function Login({onLogin}) {
         required
         onChange={handleChange}
         value={values.email.value}
+        autoComplete="off"
       />
       <span
         className={`auth-form__input-error ${
@@ -66,6 +67,7 @@ function Login({onLogin}) {
         required
         onChange={handleChange}
         value={values.password.value}
+        autoComplete="off"
       />
       <span
         className={`auth-form__input-error ${
