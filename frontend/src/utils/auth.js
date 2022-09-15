@@ -25,4 +25,13 @@ export function authorize({ email, password }) {
   })
   .then((res) => checkResponse(res));
 }
+
+export function checkToken() {
+  return fetch(`${baseUrl}/check`, {
+    method: "GET",
+    headers,
+    credentials: "include",
+  })
+  .then((res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+}; 
  

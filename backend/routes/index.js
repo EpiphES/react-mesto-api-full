@@ -14,6 +14,8 @@ router.post('/signin', signInValidation, login);
 
 router.post('/signup', signUpValidation, createUser);
 
+router.get('/check', (req, res) => (req.cookies.jwt ? res.send({ check: true }) : res.send({ check: false })));
+
 router.use(auth);
 
 router.use('/users', userRouter);
