@@ -70,8 +70,9 @@ const likeCard = (req, res, next) => {
       if (!card) {
         throw new NotFoundError(cardNotFoundMessage);
       }
-      return res.send({ data: card });
+      return Card.populate(card, { path: 'owner' });
     })
+    .then((card) => res.send({ data: card }))
     .catch((err) => {
       if (err.name === 'CastError' || err.name === 'ValidationError') {
         return next(new BadRequestError(badRequestMessage));
@@ -90,8 +91,9 @@ const dislikeCard = (req, res, next) => {
       if (!card) {
         throw new NotFoundError(cardNotFoundMessage);
       }
-      return res.send({ data: card });
+      return Card.populate(card, { path: 'owner' });
     })
+    .then((card) => res.send({ data: card }))
     .catch((err) => {
       if (err.name === 'CastError' || err.name === 'ValidationError') {
         return next(new BadRequestError(badRequestMessage));
