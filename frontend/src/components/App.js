@@ -169,21 +169,25 @@ function App() {
   }
 
   function handleLogout() {
-    // auth
-    //   .logOut
-    setLoggedIn(false)
-    history.push("/sign-in");
+    auth
+      .logout()
+      .then(() => {
+        setLoggedIn(false);
+        history.push("/sign-in");
+      })
+      .catch((err) => console.log(err));
+    
   }
 
   const checkToken = useCallback(() => {
     auth
       .checkToken()
       .then((res) => {
-        console.log(res);
-        if(res.check === true) {
+        if(res) {
           setLoggedIn(true);
           history.push("/");          
         } else {
+          setLoggedIn(false);
           history.push("/sign-in");
         }
       })

@@ -27,11 +27,20 @@ export function authorize({ email, password }) {
 }
 
 export function checkToken() {
-  return fetch(`${baseUrl}/check`, {
+  return fetch(`${baseUrl}/checktoken`, {
     method: "GET",
     headers,
     credentials: "include",
   })
-  .then((res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+  .then((res) => checkResponse(res));
 }; 
+
+export function logout() {
+  return fetch(`${baseUrl}/logout`, {
+    method: "GET",
+    headers,
+    credentials: "include",
+  })
+  .then((res) => checkResponse(res));
+}
  

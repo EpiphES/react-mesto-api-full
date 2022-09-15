@@ -135,6 +135,15 @@ const login = (req, res, next) => {
     .catch(next);
 };
 
+const logout = (req, res) => {
+  res.clearCookie('jwt');
+  res.send({
+    status: 'Bye!',
+  });
+};
+
+const checkToken = (req, res) => (req.cookies.jwt ? res.send(true) : res.send(false));
+
 module.exports = {
   getUsers,
   getUserById,
@@ -143,4 +152,6 @@ module.exports = {
   updateUserProfile,
   updateUserAvatar,
   login,
+  logout,
+  checkToken,
 };
