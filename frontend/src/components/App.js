@@ -40,8 +40,6 @@ function App() {
 
   const [registerMessage, setRegisterMessage] = useState(null);
 
-  const [userEmail, setUserEmail] = useState("");
-
   useEffect(() => {
     if(!loggedIn) {
       return
@@ -159,7 +157,6 @@ function App() {
       .authorize({ email, password })
       .then((user) => {
         setLoggedIn(true);
-        setUserEmail(user.data.email);
         history.push("/");
       })
       .catch((err) => {
@@ -172,30 +169,36 @@ function App() {
   }
 
   function handleLogout() {
+    // auth
+    //   .logOut
     setLoggedIn(false)
     history.push("/sign-in");
   }
 
-  // const checkToken = useCallback(() => {
-  //   api
-  //     .getUserInfo()
-  //     .then((res) => {
-  //       setLoggedIn(true);
-  //       setUserEmail(res.data.email);
-  //       history.push("/");
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, [history]);
+  const checkToken = useCallback(() => {
+    auth
+      .checkToken()
+      .then((res) => {
+        console.log(res);
+        if(res.check === true) {
+          setLoggedIn(true);
+          history.push("/");          
+        } else {
+          history.push("/sign-in");
+        }
+      })
+      .catch((err) => console.log(err));
+  }, [history]);
 
-  // useEffect(() => {
-  //   checkToken()
-  // }, [checkToken]);
+  useEffect(() => {
+    checkToken()
+  }, [checkToken]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__container">
-          <Header email={userEmail} onLogout={handleLogout} />
+          <Header email={currentUser?.email} onLogout={handleLogout} />
           <Switch>
             <ProtectedRoute
               exact
