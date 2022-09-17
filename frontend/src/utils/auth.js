@@ -1,4 +1,4 @@
-const baseUrl = "http://api.epiphany.nomoredomains.sbs";
+const baseUrl = "https://api.epiphany.nomoredomains.sbs";
 const headers = { 
   "Content-Type": "application/json", 
 };

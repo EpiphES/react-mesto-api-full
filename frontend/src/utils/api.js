@@ -66,7 +66,7 @@ class Api {
   }
 }
 const api = new Api({
-  baseUrl: "http://api.epiphany.nomoredomains.sbs",
+  baseUrl: "https://api.epiphany.nomoredomains.sbs",
   headers: {
     "Content-Type": "application/json",
   },
