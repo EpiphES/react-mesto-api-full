@@ -12,9 +12,15 @@ const { signInValidation, signUpValidation } = require('../middlewares/validatio
 const { NotFoundError } = require('../errors');
 const { pageNotFoundMessage } = require('../utils/constants');
 
-router.get('/checktoken', checkToken);
+router.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 router.post('/signin', signInValidation, login);
 router.post('/signup', signUpValidation, createUser);
+router.get('/checktoken', checkToken);
 
 router.use(auth);
 router.get('/logout', logout);
