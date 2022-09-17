@@ -8,8 +8,8 @@ const cors = require('cors');
 const router = require('./routes');
 const errorHandler = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { PORT, MONGO_URI } = require('./utils/constants');
 
-const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(express.json());
@@ -40,7 +40,7 @@ app.use(errors());
 app.use(errorHandler);
 
 async function main() {
-  await mongoose.connect('mongodb://localhost:27017/mestodb', {
+  await mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: false,
   });

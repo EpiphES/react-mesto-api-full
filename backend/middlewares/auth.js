@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
 const { AuthorizationError } = require('../errors');
-const { authorizationErrorMessage } = require('../utils/constants');
+const { authorizationErrorMessage, JWT_SECRET } = require('../utils/constants');
 
 const auth = (req, res, next) => {
   const token = req.cookies.jwt;
   let payload;
   try {
-    payload = jwt.verify(token, 'JWT_SECRET');
+    payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     return next(new AuthorizationError(authorizationErrorMessage));
   }
