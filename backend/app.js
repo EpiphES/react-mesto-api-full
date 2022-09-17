@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://epiphany.nomoredomains.sbs/');
+  res.header('Access-Control-Allow-Origin', 'http://84.201.130.140');
   res.header('Access-Control-Allow-Credentials', 'true');
   const { method } = req;
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
