@@ -19,7 +19,6 @@ Mesto - одностраничное приложение (SPA), в которо
 ## Технологии
 
 - MERN ( MongoDB + Express.js + React.js + Nodejs)
-- деплой проекта на Yandex Cloud
 - HTML
 - CSS
 - JavaScript
@@ -27,6 +26,3 @@ Mesto - одностраничное приложение (SPA), в которо
 - адаптивная вёрстка
 - БЭМ
 ---
-## Ссылка на сайт
-
-https://epiphany.nomoredomains.sbs
